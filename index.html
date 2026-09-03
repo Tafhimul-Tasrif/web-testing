@@ -1,42 +1,617 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title></title>
-	<link rel="stylesheet" href="style.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tafhim — A Personal Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <!-- arabic font -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&display=swap" rel="stylesheet">
-    
     <!-- bangla font -->
     <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
-    
     <!-- logo font -->
     <link href="https://fonts.googleapis.com/css2?family=Ruwudu:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <!-- bangla calligraphy font -->
     <link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@400..700&display=swap" rel="stylesheet">
-    
     <!-- english font -->
     <link href="https://fonts.googleapis.com/css2?family=Valley+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
-</head>
-<body>
-	<section id="home">
-		<a href="/">تفهيم</li>
-		<div id="navbar">
-			<ul>
-				<li>Home</li>
-				<li>Post</li>
-				<li>e-book</li>
-				<li>About</li>
-			</ul>
-		</div>
-	</section>
-</body>
+    <style>
+      :root {
+        --bg: #FDFBF7;
+        --bg-alt: #F5EEE0;
+        --sand: #E6D9BE;
+        --forest: #23402F;
+        --forest-deep: #16261C;
+        --forest-soft: #3E5C48;
+        --ink: #2B2A22;
+        --ink-soft: #5A5A4C;
+        --terracotta: #B5654A;
+        --brass: #A9863F;
+        --line: rgba(35, 64, 47, 0.14);
+        --line-soft: rgba(35, 64, 47, 0.08);
+        --serif-display: "Tiro Bangla", serif;
+        --serif-body: "Tiro Bangla", serif;
+        --arabic: "Amiri Quran", serif;
+        --logo: "Ruwudu", serif;
+        --bn-cal: "Alkatra", system-ui;
+        --en-font: "Valley Sans", sans-serif;
+        --max: 42rem;
+        --max-wide: 62rem;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--serif-body);
+        font-size: 1.0625rem;
+        line-height: 1.75;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        * {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      a {
+        color: inherit;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--brass);
+        outline-offset: 3px;
+      }
+
+      /* ================= HEADER ================= */
+      header.site {
+        position: relative;
+        background: var(--forest);
+        color: var(--bg);
+        overflow: hidden;
+      }
+
+      header.site::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.05;
+        background-image: inherit;
+      }
+
+      .nav-wrap {
+        position: relative;
+        max-width: var(--max-wide);
+        margin: 0 auto;
+        padding: 1.6rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .brand {
+        font-family: var(--serif-display);
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        color: var(--bg);
+        display: flex;
+        align-items: baseline;
+        gap: 0.5rem;
+      }
+
+      .brand span.ar {
+        font-family: var(--logo);
+        font-size: 1.5rem;
+        color: var(--sand);
+      }
+
+      nav.primary ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav.primary a {
+        text-decoration: none;
+        font-size: 0.95rem;
+        color: var(--sand);
+        padding-bottom: 2px;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s ease, color 0.3s ease;
+        font-family: var(--en-font);
+      }
+
+      nav.primary a:hover {
+        color: var(--bg);
+        border-color: var(--brass);
+      }
+
+      /* ================= HERO ================= */
+      .hero {
+        position: relative;
+        background: var(--forest);
+        color: var(--bg);
+        padding: 4.5rem 1.5rem 7rem;
+        text-align: center;
+        overflow: hidden;
+        height: 100vh;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.045;
+        background-image: inherit;
+      }
+
+      .hero h1 {
+        position: relative;
+        font-family: var(--bn-cal);
+        font-weight: 500;
+        font-size: clamp(2.2rem, 5vw, 3.1rem);
+        line-height: 1.2;
+        /*max-width: 24ch;*/
+        margin: 0 auto 1.1rem;
+        color: var(--bg);
+      }
+
+      .hero p.lede {
+        font-family: var(--logo);
+        position: relative;
+        max-width: 36ch;
+        margin: 0 auto;
+        color: var(--sand);
+        font-size: 1.6rem;
+        line-height: 1.8;
+      }
+
+      .hero img {
+        width: 400px;
+      }
+
+      /* ================= LAYOUT SECTIONS ================= */
+      main {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      section {
+        padding: 5rem 0;
+      }
+
+      section+section {
+        border-top: 1px solid var(--line-soft);
+      }
+
+      .section-head {
+        margin-bottom: 3rem;
+      }
+
+      .section-head h2 {
+        font-family: var(--serif-display);
+        font-weight: 600;
+        font-size: 1.9rem;
+        color: var(--forest);
+        margin: 0 0 0.6rem;
+      }
+
+      .section-head p {
+        color: var(--ink-soft);
+        margin: 0;
+        font-size: 1rem;
+        max-width: 40ch;
+      }
+
+      /* ================= AYAH / HADITH CALLOUT ================= */
+      .callout {
+        position: relative;
+        background: var(--bg-alt);
+        border: 1px solid var(--line);
+        border-radius: 2px;
+        padding: 3rem 2.5rem;
+        margin: 0 0 3rem;
+      }
+
+      .callout::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+      }
+
+      .callout .arabic {
+        font-family: var(--arabic);
+        direction: rtl;
+        font-size: 1.85rem;
+        line-height: 2.15;
+        color: var(--forest-deep);
+        text-align: center;
+        margin: 0 0 1.6rem;
+      }
+
+      .callout .translation {
+        overflow: hidden;
+        max-height: 400px;
+        opacity: 1;
+        transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.4s ease;
+      }
+
+      .callout .translation p {
+        font-size: 1.08rem;
+        line-height: 1.85;
+        color: var(--ink);
+        text-align: center;
+        margin: 0 0 1rem;
+      }
+
+      .callout .reference {
+        text-align: center;
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
+        color: var(--ink-soft);
+      }
+
+      /* ================= POST LIST ================= */
+      .post {
+        padding: 2.6rem 0;
+        border-top: 1px solid var(--line-soft);
+      }
+
+      .post:first-child {
+        border-top: none;
+        padding-top: 0;
+      }
+
+      .post .meta {
+        font-size: 0.85rem;
+        color: var(--brass);
+        margin-bottom: 0.55rem;
+      }
+
+      .post h3 {
+        font-family: var(--serif-display);
+        font-weight: 600;
+        font-size: 1.55rem;
+        margin: 0 0 0.75rem;
+      }
+
+      .post h3 a {
+        text-decoration: none;
+        color: var(--forest);
+        background-image: linear-gradient(var(--terracotta), var(--terracotta));
+        background-repeat: no-repeat;
+        background-position: 0 100%;
+        background-size: 0% 1px;
+        transition: background-size 0.35s ease;
+      }
+
+      .post h3 a:hover {
+        background-size: 100% 1px;
+      }
+
+      .post p.excerpt {
+        color: var(--ink-soft);
+        margin: 0 0 0.9rem;
+        max-width: 62ch;
+      }
+
+      .post .read-more {
+        font-size: 0.92rem;
+        color: var(--forest-soft);
+        text-decoration: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .post .read-more:hover {
+        border-color: var(--terracotta);
+        color: var(--terracotta);
+      }
+
+      /* ================= ABOUT ================= */
+      .about-wrap {
+        display: flex;
+        gap: 2.5rem;
+        align-items: flex-start;
+      }
+
+      .about-mark {
+        flex: 0 0 84px;
+        width: 84px;
+        height: 100px;
+      }
+
+      .about-wrap h2 {
+        margin: 0 0 1rem;
+        font-size: 1.1rem;
+        color: var(--ink);
+      }
+
+      .about-wrap p {
+        margin: 0 0 1rem;
+        color: var(--ink);
+      }
+
+      .about-wrap p:last-child {
+        margin-bottom: 0;
+      }
+
+      .about-wrap li {
+        list-style: none !important;
+        list-style-type: none !important;
+      }
+
+      .about-wrap span {
+        color: var(--brass);
+        margin-right: 10px;
+      }
+
+      @media (max-width: 560px) {
+        .about-wrap {
+          flex-direction: column;
+        }
+
+        .about-mark {
+          width: 64px;
+          height: 76px;
+        }
+      }
+
+      /* ================= FOOTER ================= */
+      footer.site {
+        position: relative;
+        background: var(--forest-deep);
+        color: var(--sand);
+        padding: 3.5rem 1.5rem 2.5rem;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      footer.site::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.045;
+        background-image: inherit;
+      }
+
+      footer.site p.dua {
+        position: relative;
+        font-family: var(--serif-display);
+        font-style: italic;
+        font-size: 1.15rem;
+        max-width: 34ch;
+        margin: 0 auto 1.5rem;
+        line-height: 1.7;
+        color: var(--bg);
+      }
+
+      footer.site nav ul {
+        position: relative;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 1.75rem;
+        margin: 0 0 1.75rem;
+        padding: 0;
+        flex-wrap: wrap;
+      }
+
+      footer.site nav a {
+        text-decoration: none;
+        font-size: 0.9rem;
+        color: var(--sand);
+      }
+
+      footer.site nav a:hover {
+        color: var(--bg);
+      }
+
+      footer.site .fine {
+        position: relative;
+        font-size: 0.8rem;
+        color: rgba(230, 217, 190, 0.6);
+      }
+
+      /* ================= RESPONSIVE ================= */
+      @media (max-width: 640px) {
+        section {
+          padding: 3.5rem 0;
+        }
+
+        .callout {
+          padding: 2.25rem 1.5rem;
+        }
+
+        .callout .arabic {
+          font-size: 1.5rem;
+          line-height: 2;
+        }
+
+        nav.primary ul {
+          gap: 1.1rem;
+        }
+
+        .hero {
+          padding: 3.5rem 1.25rem 5rem;
+        }
+
+        .hero img {
+          width: 300px
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site pattern">
+      <div class="nav-wrap">
+        <a class="brand" href="#top">
+          <span class="ar">تفهيم</span>
+        </a>
+        <nav class="primary">
+          <ul>
+            <li>
+              <a href="#reflections">Post</a>
+            </li>
+            <li>
+              <a href="#ayat">e-books</a>
+            </li>
+            <li>
+              <a href="#about">About</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <section class="hero pattern" id="top">
+      <img src="img/b3.png">
+      <h1>ধর্মের পথে শহীদ যাহারা আমরা সেই সে জাতি</h1>
+      <p class="lede">فِدَاكَ يَا رَسُولَ الله</p>
+    </section>
+    <main>
+      <section id="ayat">
+        <div class="section-head">
+          <h2></h2>
+          <p></p>
+        </div>
+        <article class="callout" data-callout>
+          <div class="callout-kicker"></div>
+          <p class="arabic" lang="ar" dir="rtl">يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ لِمَ تَقُولُونَ مَا لَا تَفْعَلُونَ</p>
+          <div class="translation" data-translation>
+            <p>“হে ঈমানদারগণ, তোমরা তা কেন বল, যা তোমরা কর না?”</p>
+          </div>
+          <p class="reference">সূরা আস-সফ, আয়াতঃ ২</p>
+        </article>
+      </section>
+      <section id="reflections">
+        <div class="section-head">
+          <h2>Recent Reflections</h2>
+          <p>Short essays, written slowly and revised gently.</p>
+        </div>
+        <article class="post">
+          <div class="meta">28 August · 4 min read</div>
+          <h3>
+            <a href="#">On Being Forgiven Before You Ask</a>
+          </h3>
+          <p class="excerpt">Some mercy arrives before the prayer is even finished — a reflection on tawbah, timing, and the quiet generosity of a God who does not wait to be perfectly petitioned.</p>
+          <a class="read-more" href="#">Continue reading →</a>
+        </article>
+        <article class="post">
+          <div class="meta">14 August · 6 min read</div>
+          <h3>
+            <a href="#">The Discipline of Slow Wudu</a>
+          </h3>
+          <p class="excerpt">What changes when ablution stops being a task to finish and becomes the first sentence of the prayer itself.</p>
+          <a class="read-more" href="#">Continue reading →</a>
+        </article>
+        <article class="post">
+          <div class="meta">2 August · 5 min read</div>
+          <h3>
+            <a href="#">Sabr Is Not the Same as Silence</a>
+          </h3>
+          <p class="excerpt">Patience is often mistaken for suppression. Notes from a difficult month on what steadfastness actually asks of us.</p>
+          <a class="read-more" href="#">Continue reading →</a>
+        </article>
+        <article class="post">
+          <div class="meta">19 July · 3 min read</div>
+          <h3>
+            <a href="#">A Short Note on Gratitude in Grief</a>
+          </h3>
+          <p class="excerpt">Alhamdulillah does not require a good day. Some thoughts on saying it anyway.</p>
+          <a class="read-more" href="#">Continue reading →</a>
+        </article>
+      </section>
+      <section id="about">
+        <div class="section-head">
+          <h2>About This Space</h2>
+        </div>
+        <div class="about-wrap">
+          <div class="about-mark" aria-hidden="true">
+            <svg viewBox="0 0 84 100" fill="none">
+              <path d="M8 100V52C8 26 23 8 42 8C61 8 76 26 76 52V100" stroke="#A9863F" stroke-width="1.2" />
+            </svg>
+          </div>
+          <div>
+            <h2>রাসুলুল্লাহ (صلى الله عليه وسلم) বলেন, "আমার পক্ষ থেকে একটি মাত্র আয়াত বা বাণী হলেও তা মানুষের কাছে পৌঁছে দাও"। <br>— সহিহ বুখারি: ৩৪৬১ </h2>
+            <p>আমি তাফহীমুল তাশরীফ। একজন মুসলিম হিসেবে দ্বীনকে জানা ও বোঝার তীব্র আকাঙ্ক্ষা থেকেই আমার এই পথচলা। পবিত্র কুরআন, সুন্নাহ এবং ফিকহ-এর মহাসমুদ্র থেকে ইসলামের সঠিক জ্ঞান নিজে অর্জন করা এবং সহজ-সাবলীল ভাষায় তা সবার কাছে পৌঁছে দেওয়ার উদ্দেশ্যেই আমার এই ব্লগের সৃষ্টি। এটি মূলত আমার অর্জিত জ্ঞান অন্যের সাথে ভাগাভাগি করে নেওয়ার একটি মাধ্যম।</p>
+            <ul>
+              <li>
+                <span>
+                  <i class="fa-solid fa-circle-check"></i>
+                </span>কুরআন
+              </li>
+              <li>
+                <span>
+                  <i class="fa-solid fa-circle-check"></i>
+                </span>হাদিস
+              </li>
+              <li>
+                <span>
+                  <i class="fa-solid fa-circle-check"></i>
+                </span>তাফসীর
+              </li>
+              <li>
+                <span>
+                  <i class="fa-solid fa-circle-check"></i>
+                </span>ফিকহ
+              </li>
+              <li>
+                <span>
+                  <i class="fa-solid fa-circle-check"></i>
+                </span>সিরাত
+              </li>
+              <li>
+                <span>
+                  <i class="fa-solid fa-circle-check"></i>
+                </span>ইসলামের ইতিহাস
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site pattern">
+      <p class="dua">"Our Lord, pour upon us patience and let us die as Muslims in submission to You."</p>
+      <nav>
+        <ul>
+          <li>
+            <a href="#reflections">Reflections</a>
+          </li>
+          <li>
+            <a href="#ayat">Ayāt &amp; Hadith</a>
+          </li>
+          <li>
+            <a href="#about">About</a>
+          </li>
+        </ul>
+      </nav>
+      <p class="fine">As-Sakīnah — written slowly, shared quietly.</p>
+    </footer>
+    <script></script>
+  </body>
 </html>
