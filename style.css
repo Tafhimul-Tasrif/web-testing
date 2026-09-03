@@ -1,0 +1,60 @@
+:root {
+--bg: #FDFBF7;
+--bg-alt: #F5EEE0;
+--sand: #E6D9BE;
+--forest: #23402F;
+--forest-deep: #16261C;
+--forest-soft: #3E5C48;
+--ink: #2B2A22;
+--ink-soft: #5A5A4C;
+--terracotta: #B5654A;
+--brass: #A9863F;
+--line: rgba(35, 64, 47, 0.14);
+--line-soft: rgba(35, 64, 47, 0.08);
+--serif-display: "Tiro Bangla", serif;
+--serif-body: "Tiro Bangla", serif;
+--arabic: "Amiri Quran", serif;
+--logo: "Ruwudu", serif;
+--bn-cal: "Alkatra", system-ui;
+--en-font: "Valley Sans", sans-serif;
+}
+
+*{
+margin: 0;
+border: 0;
+padding: 0;
+font-family: var(--serif-body);
+font-size: 16px;
+}
+
+
+/*--------------------Home--------------------*/
+
+
+#home{
+	background-color: var(--forest);
+	width: 100%;
+	min-height: 100dvh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding: 2rem 0;
+}
+#home a{
+	font-family: var(--logo);
+	font-size: 2rem;
+	color: var(--sand);
+	text-decoration: none;
+}
+#navbar{
+	padding: 5px 10px;
+	border-top: 2px solid var(--sand);
+	border-bottom: 2px solid var(--sand);
+	margin: 10px 0px 0px 0px;
+}
+#navbar ul{
+	list-style: none;
+	display: flex;
+	gap: 30px;
+}
